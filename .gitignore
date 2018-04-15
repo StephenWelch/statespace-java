@@ -29,8 +29,12 @@ hs_err_pid*
 .classpath
 **DS_Store
 
+# IntelliJ IDEA
 .idea/
 out/
 *.iml
 *.ipr
 *.iws
+
+# Dolphin File Manager
+.directory
