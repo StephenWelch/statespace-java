@@ -1,4 +1,4 @@
-package com.silentwanderer.util.math;
+package com.silentwanderer.util.poofs.math;
 
 /**
  * A movement along an arc at constant curvature and velocity. We can use ideas from "differential calculus" to create

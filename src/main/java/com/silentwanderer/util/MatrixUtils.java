@@ -1,7 +1,7 @@
-package com.silentwanderer;
+package com.silentwanderer.util;
 
 import Jama.Matrix;
-import com.silentwanderer.util.Util;
+import com.silentwanderer.util.poofs.Util;
 
 public class MatrixUtils {
 
@@ -29,6 +29,16 @@ public class MatrixUtils {
             }
         }
         return clamped;
+    }
+
+    public static Matrix filledMatrix(int rows, int columns, int value) {
+        Matrix filledMatrix = new Matrix(rows, columns);
+        for(int r = 0; r < filledMatrix.getRowDimension(); r++) {
+            for(int c = 0; c < filledMatrix.getColumnDimension(); c++) {
+                filledMatrix.set(r, c, value);
+            }
+        }
+        return filledMatrix;
     }
 
 }

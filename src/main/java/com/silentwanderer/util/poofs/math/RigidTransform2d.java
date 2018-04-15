@@ -1,7 +1,7 @@
-package com.silentwanderer.util.math;
+package com.silentwanderer.util.poofs.math;
 
-import static com.silentwanderer.util.Util.epsilonEquals;
-import com.silentwanderer.util.Interpolable;
+import static com.silentwanderer.util.poofs.Util.epsilonEquals;
+import com.silentwanderer.util.poofs.Interpolable;
 
 /**
  * Represents a 2d pose (rigid transform) containing translational and rotational elements.

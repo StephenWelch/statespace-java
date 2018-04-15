@@ -1,4 +1,4 @@
-package com.silentwanderer.kinematics;
+package com.silentwanderer.controllers.statespace;
 
 import Jama.Matrix;
 

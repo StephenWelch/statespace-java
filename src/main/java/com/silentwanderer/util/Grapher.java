@@ -1,4 +1,4 @@
-package com.silentwanderer;
+package com.silentwanderer.util;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

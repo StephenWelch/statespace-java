@@ -1,4 +1,4 @@
-package com.silentwanderer.util;
+package com.silentwanderer.util.poofs;
 
 import java.util.LinkedList;
 

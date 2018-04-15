@@ -1,9 +1,10 @@
 package com.silentwanderer;
 
 import Jama.Matrix;
-import com.silentwanderer.kinematics.ElevatorGains;
-import com.silentwanderer.kinematics.StateSpaceController;
-import com.silentwanderer.kinematics.StateSpaceSim;
+import com.silentwanderer.controllers.statespace.ElevatorGains;
+import com.silentwanderer.controllers.statespace.StateSpaceController;
+import com.silentwanderer.controllers.statespace.StateSpaceSim;
+import com.silentwanderer.util.Grapher;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

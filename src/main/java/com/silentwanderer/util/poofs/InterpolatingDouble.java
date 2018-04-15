@@ -1,4 +1,4 @@
-package com.silentwanderer.util;
+package com.silentwanderer.util.poofs;
 
 /**
  * A Double that can be interpolated using the InterpolatingTreeMap.

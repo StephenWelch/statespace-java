@@ -1,7 +1,7 @@
-package com.silentwanderer.kinematics;
+package com.silentwanderer.controllers.statespace;
 
 import Jama.Matrix;
-import com.silentwanderer.Grapher;
+import com.silentwanderer.util.Grapher;
 
 public class StateSpaceSim {
 

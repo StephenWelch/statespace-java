@@ -1,4 +1,4 @@
-package com.silentwanderer.util;
+package com.silentwanderer.util.poofs;
 
 /**
  * InverseInterpolable is an interface used by an Interpolating Tree as the Key type. Given two endpoint keys and a

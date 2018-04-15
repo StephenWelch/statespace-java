@@ -1,6 +1,7 @@
-package com.silentwanderer.kinematics;
+package com.silentwanderer.controllers.statespace;
 
 import Jama.Matrix;
+import com.silentwanderer.util.MatrixUtils;
 
 public class StateSpaceController {
 
@@ -8,6 +9,8 @@ public class StateSpaceController {
 
     private Matrix mLastState, mCurrentState, mGoalState;
     private Matrix mLastDotState, mCurrentDotState;
+
+    private Matrix mErrorScalars;
 
     public StateSpaceController(StateSpaceGains pGains, Matrix pInitialState) {
         this.mGains = pGains;
@@ -34,7 +37,7 @@ public class StateSpaceController {
     }
 
     private Matrix getError() {
-        return mGoalState.minus(mCurrentState);
+        return mGoalState.minus(mCurrentState).times(mErrorScalars);
     }
 
     public void setCurrentState(Matrix pCurrentState) {
@@ -42,7 +45,16 @@ public class StateSpaceController {
     }
 
     public void setGoalState(Matrix pGoalState) {
+        setGoalState(pGoalState, getDefaultErrorScalars());
+    }
+
+    public void setGoalState(Matrix pGoalState, Matrix pErrorScalars) {
         this.mGoalState = pGoalState;
+        mErrorScalars = pErrorScalars;
+    }
+
+    public Matrix getDefaultErrorScalars() {
+        return MatrixUtils.filledMatrix(mCurrentState.getRowDimension(), mCurrentState.getColumnDimension(), 1);
     }
 
     public Matrix getLastState() {

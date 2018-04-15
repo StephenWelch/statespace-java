@@ -1,11 +1,11 @@
-package com.silentwanderer.util.math;
+package com.silentwanderer.util.poofs.math;
 
 
-import com.silentwanderer.util.Interpolable;
+import com.silentwanderer.util.poofs.Interpolable;
 
 import java.text.DecimalFormat;
 
-import static com.silentwanderer.util.Util.epsilonEquals;
+import static com.silentwanderer.util.poofs.Util.epsilonEquals;
 
 /**
  * A rotation in a 2d coordinate frame represented a point on the unit circle (cosine and sine).

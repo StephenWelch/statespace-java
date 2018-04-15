@@ -1,4 +1,4 @@
-package com.silentwanderer.util;
+package com.silentwanderer.util.poofs;
 
 /**
  * Interpolable is an interface used by an Interpolating Tree as the Value type. Given two end points and an

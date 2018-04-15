@@ -1,7 +1,7 @@
-package com.silentwanderer.util.math;
+package com.silentwanderer.util.poofs.math;
 
 
-import com.silentwanderer.util.Interpolable;
+import com.silentwanderer.util.poofs.Interpolable;
 
 import java.text.DecimalFormat;
 
