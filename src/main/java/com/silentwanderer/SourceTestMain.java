@@ -1,12 +1,12 @@
 package com.silentwanderer;
 
 import Jama.Matrix;
-import com.silentwanderer.kinematics.StateSpace;
+import com.silentwanderer.kinematics.ElevatorController;
+import com.silentwanderer.kinematics.StateSpaceController;
+import com.silentwanderer.kinematics.StateSpaceGains;
 import com.silentwanderer.kinematics.StateSpaceSim;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
-import java.util.Scanner;
 
 public class SourceTestMain extends Application {
 
@@ -24,13 +24,13 @@ public class SourceTestMain extends Application {
                 {0}
         });
 
+        ElevatorController e = new ElevatorController();
+        StateSpaceController s = new StateSpaceController(e.getStateSpaceGains(), start);
+        StateSpaceSim sim = new StateSpaceSim(s);
 
-        StateSpace s = new StateSpace();
-        StateSpaceSim sim = new StateSpaceSim(s.A, s.B, s.C, s.D, s.K);
+        s.setGoalState(setpoint);
 
-        sim.setInitialState(start);
-
-        sim.update(20, setpoint, graph);
+        sim.update(20, graph);
 
         launch(args);
     }
