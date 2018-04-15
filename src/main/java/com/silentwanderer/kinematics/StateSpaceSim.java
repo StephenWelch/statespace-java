@@ -49,12 +49,9 @@ public class StateSpaceSim {
 
             System.out.println("Current State:\n" + MatrixUtils.toString(currentState));
 
-            Matrix inputForce = K.times(currentState);
+            Matrix error = goal.minus(currentState);
 
-//            inputForce = MatrixUtils.clamp(inputForce, new Matrix(new double[][] {
-//                    {5},
-//                    {5}
-//            }));
+            Matrix inputForce = K.times(error);
 
             Matrix output = A.times(currentState).plus(B.times(inputForce));
 
@@ -68,7 +65,7 @@ public class StateSpaceSim {
 
             currentState = new Matrix(new double[][] {
                     {lastPosition + displacement},
-                    {lastVelocity - velocity}
+                    {lastVelocity + velocity}
             });
 
             System.out.println("Input Force :\n" + MatrixUtils.toString(inputForce));
@@ -77,7 +74,7 @@ public class StateSpaceSim {
 
             graph.addPoint("Position", currentTime, currentState.get(0,0));
             graph.addPoint("Velocity", currentTime, currentState.get(1, 0));
-            graph.addPoint("Acceleration", currentTime, output.get(1, 0));
+//            graph.addPoint("Acceleration", currentTime, output.get(1, 0));
 
             lastOutput = output;
 

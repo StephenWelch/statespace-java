@@ -20,7 +20,7 @@ public class SourceTestMain extends Application {
         });
 
         Matrix setpoint = new Matrix(new double[][] {
-                {0},
+                {-10},
                 {0}
         });
 
