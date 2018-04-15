@@ -18,36 +18,36 @@ public class StateSpaceGains {
         return A;
     }
 
-    public void setA(Matrix a) {
-        A = a;
-    }
-
     public Matrix B() {
         return B;
-    }
-
-    public void setB(Matrix b) {
-        B = b;
     }
 
     public Matrix C() {
         return C;
     }
 
-    public void setC(Matrix c) {
-        C = c;
-    }
-
     public Matrix D() {
         return D;
     }
 
-    public void setD(Matrix d) {
-        D = d;
-    }
-
     public Matrix K() {
         return K;
+    }
+
+    public void setA(Matrix a) {
+        A = a;
+    }
+
+    public void setB(Matrix b) {
+        B = b;
+    }
+
+    public void setC(Matrix c) {
+        C = c;
+    }
+
+    public void setD(Matrix d) {
+        D = d;
     }
 
     public void setK(Matrix k) {
