@@ -1,9 +1,8 @@
 package com.silentwanderer;
 
 import Jama.Matrix;
-import com.silentwanderer.kinematics.ElevatorController;
+import com.silentwanderer.kinematics.ElevatorGains;
 import com.silentwanderer.kinematics.StateSpaceController;
-import com.silentwanderer.kinematics.StateSpaceGains;
 import com.silentwanderer.kinematics.StateSpaceSim;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -24,8 +23,7 @@ public class SourceTestMain extends Application {
                 {0}
         });
 
-        ElevatorController e = new ElevatorController();
-        StateSpaceController s = new StateSpaceController(e.getStateSpaceGains(), start);
+        StateSpaceController s = new StateSpaceController(new ElevatorGains(), start);
         StateSpaceSim sim = new StateSpaceSim(s);
 
         s.setGoalState(setpoint);
