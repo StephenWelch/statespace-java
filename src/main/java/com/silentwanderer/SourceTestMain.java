@@ -3,14 +3,15 @@ package com.silentwanderer;
 import Jama.Matrix;
 import com.silentwanderer.controllers.statespace.ElevatorGains;
 import com.silentwanderer.controllers.statespace.StateSpaceController;
-import com.silentwanderer.sim.StateSpaceSim;
+import com.silentwanderer.controllers.statespace.StateSpaceSim;
 import com.silentwanderer.util.Grapher;
+import com.silentwanderer.util.LiveGrapher;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class SourceTestMain extends Application {
 
-    static Grapher graph = new Grapher("State Space Simulation", "X", "Y");
+    static LiveGrapher graph = new LiveGrapher();
 
     public static void main(String[] args) {
         launch(args);

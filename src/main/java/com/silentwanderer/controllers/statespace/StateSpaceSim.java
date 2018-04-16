@@ -2,10 +2,11 @@ package com.silentwanderer.controllers.statespace;
 
 import Jama.Matrix;
 import com.silentwanderer.util.Grapher;
+import com.silentwanderer.util.LiveGrapher;
 
 public class StateSpaceSim {
 
-    private static final double kTIME_STEP = 0.05;
+    public static final double kTIME_STEP = 0.05;
     private double currentTime = 0;
 
     private StateSpaceController mStateSpaceController;
@@ -19,7 +20,7 @@ public class StateSpaceSim {
         this.currentState = mStateSpaceController.getCurrentState();
     }
 
-    public void update(double timeDelta, Grapher graph) {
+    public void update(double timeDelta, LiveGrapher graph) {
 
         double desiredTime = currentTime + timeDelta;
 
@@ -31,9 +32,9 @@ public class StateSpaceSim {
 
             currentState = mStateSpaceController.getLastState().plus(integral);
 
-            graph.addPoint("Position", currentTime, mStateSpaceController.getCurrentState().get(0,0));
-            graph.addPoint("Velocity", currentTime, mStateSpaceController.getCurrentState().get(1, 0));
-            graph.addPoint("Acceleration", currentTime, mStateSpaceController.getCurrentDotState().get(1, 0));
+            graph.addDataPoint("Position", currentTime, mStateSpaceController.getCurrentState().get(0,0));
+            graph.addDataPoint("Velocity", currentTime, mStateSpaceController.getCurrentState().get(1, 0));
+            graph.addDataPoint("Acceleration", currentTime, mStateSpaceController.getCurrentDotState().get(1, 0));
 
             currentTime += kTIME_STEP;
 
