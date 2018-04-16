@@ -22,29 +22,46 @@ public class LiveGrapher extends Application {
 
     LineChart<Number, Number> chart;
 
+    String windowName, chartName;
+    String xLabel, yLabel;
+    double xLowerBound, xUpperBound, yLowerBound, yUpperBound;
+
+    public LiveGrapher(String windowName, String chartName, String xLabel, String yLabel, double xLowerBound, double xUpperBound, double yLowerBound, double yUpperBound) {
+        this.windowName = windowName;
+        this.chartName = chartName;
+        this.xLabel = xLabel;
+        this.yLabel = yLabel;
+        this.xLowerBound = xLowerBound;
+        this.xUpperBound = xUpperBound;
+        this.yLowerBound = yLowerBound;
+        this.yUpperBound = yUpperBound;
+    }
+
     @Override
     public void start(Stage stage) {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
 
         xAxis.setAnimated(true);
-        xAxis.setLabel("X");
-        xAxis.setAutoRanging(true);
+        xAxis.setLabel(xLabel);
+        xAxis.setAutoRanging(false);
         xAxis.setForceZeroInRange(true);
-        xAxis.setLowerBound(0);
-        xAxis.setUpperBound(40);
+        xAxis.setLowerBound(xLowerBound);
+        xAxis.setUpperBound(xUpperBound);
 
         yAxis.setAnimated(true);
-        yAxis.setLabel("Y");
+        yAxis.setLabel(yLabel);
         yAxis.setAutoRanging(false);
         xAxis.setForceZeroInRange(true);
-        yAxis.setLowerBound(-40);
-        yAxis.setUpperBound(40);
+        yAxis.setLowerBound(yLowerBound);
+        yAxis.setUpperBound(yUpperBound);
 
         chart = new LineChart<>(xAxis, yAxis);
+        chart.setTitle(chartName);
         chart.setAnimated(true);
 
         Scene scene = new Scene(chart, 800, 600);
+        stage.setTitle(windowName);
         stage.setScene(scene);
         stage.show();
 

@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class SourceTestMain extends Application {
 
-    static LiveGrapher graph = new LiveGrapher();
+    static LiveGrapher graph = new LiveGrapher("Simulation", "State Space Simulation", "Time", "Y", 0, 40, -40, 40);
 
     public static void main(String[] args) {
         launch(args);
