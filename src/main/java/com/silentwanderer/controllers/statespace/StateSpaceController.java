@@ -10,8 +10,6 @@ public class StateSpaceController {
     private Matrix mLastState, mCurrentState, mGoalState;
     private Matrix mLastDotState, mCurrentDotState;
 
-    private Matrix mErrorScalars;
-
     public StateSpaceController(StateSpaceGains pGains, Matrix pInitialState) {
         this.mGains = pGains;
         this.mCurrentState = pInitialState;
@@ -37,7 +35,7 @@ public class StateSpaceController {
     }
 
     private Matrix getError() {
-        return mGoalState.minus(mCurrentState).times(mErrorScalars);
+        return mGoalState.minus(mCurrentState);
     }
 
     public void setCurrentState(Matrix pCurrentState) {
@@ -45,16 +43,7 @@ public class StateSpaceController {
     }
 
     public void setGoalState(Matrix pGoalState) {
-        setGoalState(pGoalState, getDefaultErrorScalars());
-    }
-
-    public void setGoalState(Matrix pGoalState, Matrix pErrorScalars) {
         this.mGoalState = pGoalState;
-        mErrorScalars = pErrorScalars;
-    }
-
-    public Matrix getDefaultErrorScalars() {
-        return MatrixUtils.filledMatrix(mCurrentState.getRowDimension(), mCurrentState.getColumnDimension(), 1);
     }
 
     public Matrix getLastState() {
