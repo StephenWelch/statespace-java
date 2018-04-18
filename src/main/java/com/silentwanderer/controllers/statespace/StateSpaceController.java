@@ -19,6 +19,11 @@ public class StateSpaceController {
     public Matrix update(Matrix pY) {
 
         Matrix gainOutput = mGains.K().times(getError());
+
+//        gainOutput = MatrixUtils.clamp(gainOutput, new Matrix(new double[][] {
+//                        {2000},
+//                     }));
+
         Matrix input = mGains.B().times(gainOutput);
 
         Matrix current = mGains.A().times(mCurrentState);

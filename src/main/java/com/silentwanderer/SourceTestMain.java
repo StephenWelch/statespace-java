@@ -22,19 +22,19 @@ public class SourceTestMain extends Application {
                 {10},
                 {0}
         });
-        Matrix setpoint = new Matrix(new double[][] {
-                {-10},
-                {0}
-        });
 
         StateSpaceController s = new StateSpaceController(new ElevatorGains(), start);
         StateSpaceSim sim = new StateSpaceSim(s);
 
-        s.setGoalState(setpoint);
+        s.setGoalState(new Matrix(new double[][] {
+                {-30},
+                {0}
+        }));
 
 
         graph.start(stage);
-        sim.update(20, graph);
+        sim.update(10, graph);
+
     }
 
 }

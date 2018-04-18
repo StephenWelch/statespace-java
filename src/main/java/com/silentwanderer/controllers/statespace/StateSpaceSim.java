@@ -6,7 +6,7 @@ import com.silentwanderer.util.LiveGrapher;
 
 public class StateSpaceSim {
 
-    public static final double kTIME_STEP = 0.05;
+    public static final double kTIME_STEP = 0.001;
     private double currentTime = 0;
 
     private StateSpaceController mStateSpaceController;
@@ -23,7 +23,7 @@ public class StateSpaceSim {
     public void update(double timeDelta, LiveGrapher graph) {
 
         double desiredTime = currentTime + timeDelta;
-
+        System.out.println("desired time:" + desiredTime);
         while(currentTime < desiredTime) {
 
             mStateSpaceController.update(currentState);
@@ -37,7 +37,7 @@ public class StateSpaceSim {
             graph.addDataPoint("Acceleration", currentTime, mStateSpaceController.getCurrentDotState().get(1, 0));
 
             currentTime += kTIME_STEP;
-
+            System.out.println("sim time: " + currentTime);
         }
 
     }

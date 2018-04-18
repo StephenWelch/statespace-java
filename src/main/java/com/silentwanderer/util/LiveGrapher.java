@@ -13,10 +13,10 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class LiveGrapher extends Application {
 
-//    private Queue<XYChart.Data> dataQueue = new ArrayBlockingQueue<XYChart.Data>(1000);
     private Map<String, Queue<XYChart.Data>> dataMap = new ConcurrentHashMap<>();
     private Map<String, XYChart.Series> seriesMap = new ConcurrentHashMap<>();
 
@@ -58,26 +58,28 @@ public class LiveGrapher extends Application {
 
         chart = new LineChart<>(xAxis, yAxis);
         chart.setTitle(chartName);
+        chart.setCreateSymbols(false);
         chart.setAnimated(true);
 
-        Scene scene = new Scene(chart, 800, 600);
+        Scene scene = new Scene(chart, 1024, 768);
         stage.setTitle(windowName);
         stage.setScene(scene);
         stage.show();
 
         Thread updateThread = new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep((long)(StateSpaceSim.kTIME_STEP * 1000));
-                    for(String key : dataMap.keySet()) {
+            try {
+                while (true) {
+                    Thread.sleep((long) (StateSpaceSim.kTIME_STEP * 1000));
+                    for (String key : dataMap.keySet()) {
                         Queue<XYChart.Data> data = dataMap.get(key);
-                        if(data.peek() != null) {
-                            Platform.runLater(() -> seriesMap.get(key).getData().add(data.poll()));
+                        XYChart.Series<Number, Number> series = seriesMap.get(key);
+                        if (data.peek() != null && series.getData() != null) {
+                            Platform.runLater(() -> series.getData().add(data.poll()));
                         }
                     }
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
                 }
+            } catch(InterruptedException e) {
+                e.printStackTrace();
             }
         });
         updateThread.setDaemon(true);
@@ -85,9 +87,8 @@ public class LiveGrapher extends Application {
     }
 
     public synchronized void addDataPoint(String name, double x, double y) {
-        System.out.println("Adding data point");
         if(dataMap.get(name) == null) {
-            dataMap.put(name, new ArrayBlockingQueue<XYChart.Data>(1000));
+            dataMap.put(name, new ConcurrentLinkedQueue<>());
             XYChart.Series series = new XYChart.Series();
             series.setName(name);
             seriesMap.put(name, series);
